@@ -101,7 +101,8 @@ def a_star(env, state):
                 visited[state_obj] = state_obj.path_cost
                 action_dic[state_obj] = action_dic[node] + [action]
                 
-                stack_weight = state_obj.path_cost#- state_obj.get_heuristic(env)
+                stack_weight = state_obj.path_cost + state_obj.get_heuristic(env)
+
                 if stack_weight<0:
                     stack_weight = 0
                 

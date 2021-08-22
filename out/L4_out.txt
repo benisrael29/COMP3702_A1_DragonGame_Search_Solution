@@ -1,0 +1,1 @@
+j,gl2,j,wl,wl,wl,wl,wl,j,j,j,j,j,j,j,j,j,j,wr,gr3,wr,wr,wr,wr,j,gr1,j,gr3,j,gr3,j,gr3,wr,gr2,d1,d2,gl2,d1,d2,gl1,gl3,j,gl3,j,gl3,wl,wl,j,gl2,j,wl,wl,wl,wl,wl,j,j,j,j,j,j,j,j,j,j,wr,gr3,wr,wr,wr,wr,j,gr3,j,gr3,j,gr3,d2,gl3,wl,wl,wl,wl,j,gl3,wl,d3,wr,wr,wr,j,gr3,wr,d2,gl3,gl3,j,gl2,j,wl,wl,wl,wl,wl,j,j,j,j,j,wr,d2,d3,wr,wr,wr,j,gr3,gr3

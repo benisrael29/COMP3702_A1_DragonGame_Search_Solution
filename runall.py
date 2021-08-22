@@ -22,33 +22,35 @@ def run_all(mode, visualise):
                 "./testcases/L7.txt",
                 "./testcases/L8.txt"]
     
-    out_files = ["./out/L1_out",
-                 "./out/L2_out",
-                 "./out/L3_out",
-                 "./out/L4_out",
-                 "./out/L5_out",
-                 "./out/L6_out",
-                 "./out/L7_out",
-                 "./out/L8_out",]
+    out_files = ["./out/L1_out.txt",
+                 "./out/L2_out.txt",
+                 "./out/L3_out.txt",
+                 "./out/L4_out.txt",
+                 "./out/L5_out.txt",
+                 "./out/L6_out.txt",
+                 "./out/L7_out.txt",
+                 "./out/L8_out.txt"]
+    
     i=0
-    l=0
     for file in in_files:
         if mode == 'ucs':
-            print(file)
+            print(out_files[i])
             solution([file, out_files[i], 'ucs'])
             tester([file, out_files[i]])
             if visualise == True:
                 time.sleep(5)
                 visualiser([file, out_files[i]])
-            i== i +1
+
         if mode == 'a_star':
-            print(file)
-            solution([file, out_files[l], 'a_star'])
-            tester([file, out_files[l]])
+            solution([file, out_files[i], 'a_star'])
+            tester([file, out_files[i]])
             if visualise == True:
                 time.sleep(6)
-                visualiser([file, out_files[l]])
-            l== l +1
+                visualiser([file, out_files[i]])
+        i += 1
 
-#if __name__ == '__main__':
- #   run_all('a_star', False)
+
+
+if __name__ == '__main__':
+    run_all('a_star', False)
+    run_all('ucs', False)
