@@ -96,7 +96,7 @@ def a_star(env, state):
 
             cost_so_far = node.pathcost + cost_of_action 
             
-            if state_obj not in visited.keys(): # or cost_so_far < visited.get(state_obj):
+            if state_obj not in visited.keys() or cost_so_far < visited.get(state_obj):
                 state_obj.path_cost = cost_so_far
                 visited[state_obj] = state_obj.path_cost
                 action_dic[state_obj] = action_dic[node] + [action]

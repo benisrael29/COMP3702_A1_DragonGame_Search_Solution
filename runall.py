@@ -34,7 +34,6 @@ def run_all(mode, visualise):
     i=0
     for file in in_files:
         if mode == 'ucs':
-            print(out_files[i])
             solution([file, out_files[i], 'ucs'])
             tester([file, out_files[i]])
             if visualise == True:
@@ -47,10 +46,11 @@ def run_all(mode, visualise):
             if visualise == True:
                 time.sleep(6)
                 visualiser([file, out_files[i]])
+        print(i)
         i += 1
 
 
 
 if __name__ == '__main__':
-    run_all('a_star', False)
+    #run_all('a_star', False)
     run_all('ucs', False)
