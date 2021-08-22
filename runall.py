@@ -50,5 +50,5 @@ def run_all(mode, visualise):
                 visualiser([file, out_files[l]])
             l== l +1
 
-if __name__ == '__main__':
-    run_all('a_star', False)
+#if __name__ == '__main__':
+ #   run_all('a_star', False)
