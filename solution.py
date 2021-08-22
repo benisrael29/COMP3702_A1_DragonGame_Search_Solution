@@ -35,14 +35,11 @@ Last updated by njc 04/08/21
 
 
 """
-Step 1- Is the start node the destination?
-
-Step 2 - Add start node to visited. Pull all possible nodes to reach. 
-
-Step 3- 
+Uniform cost search algo
 
 """
 def ucs(env, state):
+    " Queue is established as: weighting , tie_resolve counter, state object"
     fringe = queuelib.PriorityQueue()
     counter = itertools.count()
     fringe.put((0, next(counter), state))
@@ -67,13 +64,12 @@ def ucs(env, state):
             action = a_state[2]
             cost_so_far = node.pathcost + cost_of_action
             
-            if state_obj not in visited.keys() or cost_so_far < visited.get(state_obj):
-                #print(type(visited[state_obj]))
+            if state_obj not in visited.keys():
                 state_obj.path_cost = cost_so_far
                 visited[state_obj] = state_obj.path_cost
                 action_dic[state_obj] = action_dic[node] + [action]
                 fringe.put((state_obj.path_cost, next(counter), state_obj))
-    return None # return failure
+    return None 
 
 
 def a_star(env, state):
@@ -97,17 +93,15 @@ def a_star(env, state):
             state_obj = a_state[0]
             cost_of_action = a_state[1]
             action = a_state[2]
-            print(cost_of_action)
-            print(state_obj.get_heuristic(env))
+
             cost_so_far = node.pathcost + cost_of_action 
             
-            if state_obj not in visited.keys() or cost_so_far < visited.get(state_obj):
-                #print(type(visited[state_obj]))
+            if state_obj not in visited.keys(): # or cost_so_far < visited.get(state_obj):
                 state_obj.path_cost = cost_so_far
                 visited[state_obj] = state_obj.path_cost
                 action_dic[state_obj] = action_dic[node] + [action]
                 
-                stack_weight = state_obj.path_cost*10- state_obj.get_heuristic(env)
+                stack_weight = state_obj.path_cost#- state_obj.get_heuristic(env)
                 if stack_weight<0:
                     stack_weight = 0
                 
