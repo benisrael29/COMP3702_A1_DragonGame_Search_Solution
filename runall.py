@@ -12,7 +12,7 @@ from solution import main as solution
 from tester import main as tester
 from visualiser import main as visualiser 
 
-def run_all(mode):
+def run_all(mode, visualise):
     in_files = ["./testcases/L1.txt",
                 "./testcases/L2.txt",
                 "./testcases/L3.txt",
@@ -34,17 +34,21 @@ def run_all(mode):
     l=0
     for file in in_files:
         if mode == 'ucs':
+            print(file)
             solution([file, out_files[i], 'ucs'])
             tester([file, out_files[i]])
-            time.sleep(5)
-            visualiser([file, out_files[i]])
+            if visualise == True:
+                time.sleep(5)
+                visualiser([file, out_files[i]])
             i== i +1
         if mode == 'a_star':
+            print(file)
             solution([file, out_files[l], 'a_star'])
             tester([file, out_files[l]])
-            time.sleep(6)
-            visualiser([file, out_files[l]])
+            if visualise == True:
+                time.sleep(6)
+                visualiser([file, out_files[l]])
             l== l +1
 
 if __name__ == '__main__':
-    run_all('a_star')
+    run_all('a_star', False)
