@@ -1,4 +1,4 @@
-import sys
+ import sys
 import os
 
 from game_env import GameEnv
@@ -161,5 +161,5 @@ def main(arglist):
 
 
 if __name__ == '__main__':
-    ret = main([sys.argv[1:]])
+    ret = main(sys.argv[1:])
 
