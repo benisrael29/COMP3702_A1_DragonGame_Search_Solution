@@ -1,4 +1,4 @@
- import sys
+import sys
 import os
 
 from game_env import GameEnv
