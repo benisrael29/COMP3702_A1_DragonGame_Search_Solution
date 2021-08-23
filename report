@@ -1,12 +1,49 @@
 Question 1. (5 marks)
 State the dimensions of complexity in DragonGame, and explain your selection.
 
-
+Dimension of Complexity:
+Modularity: Flat
+Planning horizon: Static
+Representation: Explicit states
+Computational limits: Bounded rationality
+Learning: Knowledge is given
+Sensing uncertainty: Fully observable
+Effect uncertainty: Deterministic
+Preference: Goals
+Number of agents: Single agent
+Interaction: Offline
 
 
 Question 2. (5 marks)
 Describe the components of your agent design for DragonGame.
 
+Action Space (A): The set of all possible actions the agent can perform.
+    - This is defined by game_env and includes all the directions and movements the character can perform. 
+
+Percept Space (P): The set of all possible things the agent can perceive.
+    - This is also defined in game_env and is dependant on the level. 
+    - Given this is a fully obseravble the percept space and the state space are the same. 
+    - They both include all available tiles in the level. 
+
+State Space (S): The set of all possible configurations of the world the agent is operating
+in.
+    - Is the same as the percept space. 
+
+World Dynamics/Transition Function (T : S × A → S):
+    - A function that specifies how the configuration of the world changes when the agent performs actions in it.
+    - This is implemented by perform_action() in game_env. It defines the outcome of a given move the agent performs. 
+
+
+Perception Function (Z : S → P):
+    - A function that maps a state to a perception.
+    - This is defined in game_state by get_sucessors(). It runs game_env.perform_action() for all actions possible.
+        It then returns all the states reachable. 
+
+Utility Function (U : S → R):
+    - A function that maps a state (or a sequence of states) to a real number, indicating how desirable it is for the agent to occupy that state/sequence of states.
+    - This is defined in game_state.get_heuristic(). 
+    - It returns the distance to a gem if gems are availbe on the map. Or it returns distance to the exit 
+    - The returned distance is then added to the cost of the nodes path. 
 
 Question 3. (15 marks)
 Compare the performance of Uniform Cost Search and A* search in terms of the following statistics:
