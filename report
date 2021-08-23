@@ -64,3 +64,9 @@ Design and describe heuristics (or components of a combined heuristic function) 
 the search task that account for these aspects (or any other challenging aspects you have identified) of the
 problem. Your documentation should provide a thorough explanation of the rationale for using your chosen
 heuristics (maximum of 5 marks per heuristic).
+
+    - First part of the heuristc function is the path cost which is the total cost of all the actions to get to that node. Nodes with low costs will be searched first.
+        To ensure the cost to get to the node is the lowest available if when searching a lower cost solution is found the nodes action directory is replaced by the new lower cost solution. 
+    
+    - Secondly, the distance to the nearest gem is added to the path cost. Thus states near gems have lower costs than states further away. Given lower cost states are searched first. States closer to gems are searched first. 
+

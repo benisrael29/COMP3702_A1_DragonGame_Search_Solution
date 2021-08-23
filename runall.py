@@ -52,5 +52,5 @@ def run_all(mode, visualise):
 
 
 if __name__ == '__main__':
-    #run_all('a_star', False)
-    run_all('ucs', False)
+    run_all('a_star', False)
+    #run_all('ucs', False)

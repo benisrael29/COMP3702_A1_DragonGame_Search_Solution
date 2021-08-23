@@ -1,1 +1,1 @@
-wl,wl,j,j,j,gr3
+wl,wl,j,j,j,wr,gr2

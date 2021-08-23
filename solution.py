@@ -79,8 +79,10 @@ def a_star(env, state):
     # dict: state --> path_cost
     visited = {state: 0}
     action_dic = {state: []}
-    
+    n_expanded = 0
+
     while not fringe.empty():
+        n_expanded +=1
         _, __, node = fringe.get()
         # check if this state is the goal
         if env.is_solved (node):
