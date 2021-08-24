@@ -1,1 +1,1 @@
-wl,j,j,wr,wr,wr,gr1,j,gr3,wr,j,wr,j,wr,j,gr2,j,j,j,j,j,wl,wl,wl,gl3,gl2,wl,wl,j,j,j,j,wl,wr,d1,d1,gr3,d1,wr,j,gr3,gr3,gr3,wr,wl,j,gl2,d1,d1,d1,wr,gr2,j,gr1,j
+wl,j,j,j,j,j,j,wr,wr,wr,wr,wr,wr,j,gr3,gr3,j,j,gr2

@@ -24,9 +24,8 @@ class GameState:
         self.row = row
         self.col = col
         assert isinstance(gem_status, tuple), '!!! gem_status should be a tuple !!!'
+        self.path_cost=0
         self.gem_status = gem_status
-        self.actions= []
-        self.pathcost = 0
 
     def __eq__(self, other):
         if not isinstance(other, GameState):

@@ -18,40 +18,39 @@ Question 2. (5 marks)
 Describe the components of your agent design for DragonGame.
 
 Action Space (A): The set of all possible actions the agent can perform.
-    - This is defined by game_env and includes all the directions and movements the character can perform. 
+    - This is defined in game_env.ACTIONS and includes all the directions and movements the character can perform.
 
 Percept Space (P): The set of all possible things the agent can perceive.
-    - This is also defined in game_env and is dependant on the level. 
-    - Given this is a fully obseravble the percept space and the state space are the same. 
+    - This is also defined in game_env by valid tiles. 
+    - Given this is fully obseravble the percept space and the state space are the same. 
     - They both include all available tiles in the level. 
 
 State Space (S): The set of all possible configurations of the world the agent is operating
 in.
-    - Is the same as the percept space. 
+    - This is defined by game_env and game_state. It is the set of all valid states from a given level. 
 
-World Dynamics/Transition Function (T : S × A → S):
-    - A function that specifies how the configuration of the world changes when the agent performs actions in it.
+World Dynamics/Transition Function (T : S × A → S): A function that specifies how the configuration of the world changes when the agent performs actions in it.
     - This is implemented by perform_action() in game_env. It defines the outcome of a given move the agent performs. 
 
-
-Perception Function (Z : S → P):
-    - A function that maps a state to a perception.
+Perception Function (Z : S → P): A function that maps a state to a perception.
     - This is defined in game_state by get_sucessors(). It runs game_env.perform_action() for all actions possible.
         It then returns all the states reachable. 
 
-Utility Function (U : S → R):
-    - A function that maps a state (or a sequence of states) to a real number, indicating how desirable it is for the agent to occupy that state/sequence of states.
+Utility Function (U : S → R): A function that maps a state (or a sequence of states) to a real number, indicating how desirable it is for the agent to occupy that state/sequence of states.
     - This is defined in game_state.get_heuristic(). 
-    - It returns the distance to a gem if gems are availbe on the map. Or it returns distance to the exit 
-    - The returned distance is then added to the cost of the nodes path. 
+    - It returns the distance to a gem if gems are availbe on the map. Or it returns distance to the exit if all gems are collected. 
 
 Question 3. (15 marks)
 Compare the performance of Uniform Cost Search and A* search in terms of the following statistics:
 a) The number of nodes generated
+
 b) The number of nodes on the fringe when the search terminates
+
 c) The number of nodes on the explored list (if there is one) when the search terminates
+
 d) The run time of the algorithm (e.g. in units such as mins:secs). Note that you can report run-times
 from your own machine, not the Gradescope servers.
+
 e) Discuss and interpret these results. If you are unable to implement A* search, please report and discuss
 the statistics above for UCS only.
 
@@ -65,8 +64,12 @@ the search task that account for these aspects (or any other challenging aspects
 problem. Your documentation should provide a thorough explanation of the rationale for using your chosen
 heuristics (maximum of 5 marks per heuristic).
 
-    - First part of the heuristc function is the path cost which is the total cost of all the actions to get to that node. Nodes with low costs will be searched first.
-        To ensure the cost to get to the node is the lowest available if when searching a lower cost solution is found the nodes action directory is replaced by the new lower cost solution. 
+    - First part of the heuristc function is the path cost which is the total cost of all the actions to get to that node. 
+        Nodes with low costs will be searched first. To ensure the path cost to the node is the lowest available, if a lower cost solution is found the nodes
+        action directory is replaced by the new lower cost solution. 
     
-    - Secondly, the distance to the nearest gem is added to the path cost. Thus states near gems have lower costs than states further away. Given lower cost states are searched first. States closer to gems are searched first. 
+    - Secondly, the distance to the nearest gem is added to the path cost. Thus states near gems have lower costs than states further 
+        away. Given lower cost states are searched first. States closer to gems are encouraged. 
+
+    - Thirdly, 
 

@@ -34,19 +34,24 @@ def run_all(mode, visualise):
     i=0
     for file in in_files:
         if mode == 'ucs':
+            t0 = time.time()
+            print("Level %d:"% i)
             solution([file, out_files[i], 'ucs'])
-            tester([file, out_files[i]])
+            print("Time: %f" % (time.time()-t0))
+            #tester([file, out_files[i]])
             if visualise == True:
                 time.sleep(5)
                 visualiser([file, out_files[i]])
 
         if mode == 'a_star':
+            print("Level %d:"% i)
+            t0 = time.time()
             solution([file, out_files[i], 'a_star'])
+            print("Time: %f" % (time.time()-t0))
             tester([file, out_files[i]])
             if visualise == True:
                 time.sleep(6)
                 visualiser([file, out_files[i]])
-        print(i)
         i += 1
 
 

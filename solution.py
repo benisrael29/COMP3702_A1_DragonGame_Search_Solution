@@ -47,11 +47,14 @@ def ucs(env, state):
     visited = {state: 0}
     action_dic = {state: []}
     c= itertools.count()
+    n_expanded = 0
     
     while not fringe.empty():
+        n_expanded +=1
         _, __, node = fringe.get()
         # check if this state is the goal
         if env.is_solved (node):
+            print("UCS, Visited Nodes: %d, Expanded Nodes: %d, Cost of Path: %d" %( len(visited.keys()), n_expanded, visited[node]))
             return action_dic[node]
         
         #print(next(c))
@@ -71,45 +74,58 @@ def ucs(env, state):
                 fringe.put((state_obj.path_cost, next(counter), state_obj))
     return None 
 
+def getStateid (row, col):
+    return "%s,%s" %(row, col)
 
 def a_star(env, state):
     fringe = queuelib.PriorityQueue()
     counter = itertools.count()
     fringe.put((0, next(counter), state))
-    # dict: state --> path_cost
-    visited = {state: 0}
-    action_dic = {state: []}
-    n_expanded = 0
 
+    # dict: state --> path_cost
+    initial_id=getStateid(state.row, state.col)
+
+    visited = {initial_id: 0}
+    action_dic = {initial_id: []}
+    nodes = []
+    n_expanded = 0
     while not fringe.empty():
         n_expanded +=1
+        #state obj, cost of action , action 
         _, __, node = fringe.get()
+
+        node_id = getStateid (node.row, node.col)
         # check if this state is the goal
         if env.is_solved (node):
-            return action_dic[node]
+            print("A-star, Visited Nodes: %d, Expanded Nodes: %d, Cost of Path: %d" % ( len(visited.keys()), n_expanded, visited[node_id] ))
+            return action_dic[node_id]
+
 
         # add unvisited (or visited at higher path cost) successors to container
         successors = node.get_sucessors(env)
 
         for a_state in successors:
             state_obj = a_state[0]
+            nodes.append(state_obj)
+            state_id = getStateid(state_obj.row, state_obj.col)
             cost_of_action = a_state[1]
             action = a_state[2]
+            cost_to_go = visited[node_id] + cost_of_action
 
-            cost_so_far = node.pathcost + cost_of_action 
-            
-            if state_obj not in visited.keys() or cost_so_far < visited.get(state_obj):
-                state_obj.path_cost = cost_so_far
-                visited[state_obj] = state_obj.path_cost
-                action_dic[state_obj] = action_dic[node] + [action]
-                
-                stack_weight = state_obj.path_cost + state_obj.get_heuristic(env)
 
-                if stack_weight<0:
-                    stack_weight = 0
-                
+            if state_id not in visited.keys() or cost_to_go < visited.get(state_id):
+                visited[state_id] = cost_to_go
+                action_dic[state_id] = action_dic[node_id] + [action]
+                stack_weight = visited[state_id] + state_obj.get_heuristic(env)      
                 fringe.put((stack_weight, next(counter), state_obj))
-    return None # return failure
+        
+        for node in nodes:
+            node_id = getStateid(node.row, node.col)
+            if env.is_solved(node):
+                return action_dic[node_id]
+    return action_dic[node_id]
+
+
 
 
 def write_output_file(filename, actions):
